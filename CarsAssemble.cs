@@ -2,10 +2,16 @@ using System;
 
 static class AssemblyLine
 {
+    const int BASE_PRODUCTION_RATE = 221;
+    
     public static double ProductionRatePerHour(int speed)
     {
+        return speed * BASE_PRODUCTION_RATE * SuccessRate(speed);
+    }
+    static double SuccessRate(int speed)
+    {
         double ratePerHour = 0.0;
-        if (speed >= 1 && speed <=4)
+        if (speed is >= 1 and <= 4)
         {
             ratePerHour = 1.0;
         } else if (speed >= 5 && speed <=8)
@@ -23,6 +29,6 @@ static class AssemblyLine
 
     public static int WorkingItemsPerMinute(int speed)
     {
-        return (int)ProductionRatePerHour(speed) * 221;
+        return (int)ProductionRatePerHour(speed)/60;
     }
 }
